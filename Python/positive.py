@@ -1,0 +1,4 @@
+question1 = input("What was the smallest postive thing that happend to you?:")
+question2 =  input("Could something simple, warm blanket or hot chocolate lift your spirits today? What other small comforts might help?:")
+question3 =  input("Did you know that after every storm, there's always a rainbow? What’s your rainbow today?")
+print (f"Before you start complaining about the struggles of your day, take a moment to notice what you haven't missed: {question1}.\nIf you're still stuck in negative thoughts, try imagining this-{question2} and feel it happening now.\nThere’s powerful positive energy hidden right here:{question3}")

@@ -1,0 +1,2 @@
+goodnight = input("How do you want to end this day, what will you set aside, and what will you not take to sleep?")
+print(f"Becouse before slept you left this - {goodnight}.This is your postive way to good sleep.")
