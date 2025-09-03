@@ -1,50 +1,43 @@
-import sys
-sys.path.append("C:\\Users\\Acer\\Desktop\\Seriamałychapek\\Python")
-import theplanongoodday
-import afirmation
-import humor
-import emotionalkit
-import Good_news_of_day
-import Goodnight
-import GratituteCard
-import positive_purposes
-import positive
-import PositiveSloganofday
-import retrospection
-import YourWordofday
-from fastapi import APIRouter
-from pydantic  import BaseModel
- router = APIRouter()
-class BotQuestioning(BaseModel): 
-    question : str = Field(...,description="Chciałbym poprawić ci nastrój. Proszę wpisz 1-12 abym mógł to zrobić: ")
-@router.post("/Questions")
-@staticmethod
-def Questions(user_input_mood: BotQuestioning):
-     question = user_input_question.question   #bot_questions = input("Chciałbym poprawić ci nastrój. Proszę wpisz 1-12 abym mógł to zrobić: ")
-    if question == "1":
-        theplanongoodday.planongoodday()
-    elif question == "2":
-        afirmation.afirmation()
-    elif question == "3":
-        humor.humor() 
-    elif question == "4":
-        emotionalkit.emotionalkit()
-    elif question == "5":
-        Good_news_of_day.Good_news_of_day() 
-    elif question == "6":
-        Goodnight.Goodnight() 
-    elif question == "7":
-        GratituteCard.GratituteCard() 
-    elif question == "8":
-        positive.positive() 
-    elif question == "9":
-        PositiveSloganofday.PositiveSloganofday() 
-    elif question == "10":
-        retrospection.retrospection() 
-    elif question == "11":
-        positive_purposes.positive_purposes() 
-    elif question == "12":
-        YourWordofday.YourWordofday()
-    else:
-        response =" Nie rozpoznonano numeru 1-12.Proszę wpisz wartość od 1 do 12:"    
-    return {"response":response}
+from microapps import (
+    Afirmations,
+    Humor,
+    Retrospection,
+    EmotionalKit,
+    GoodNews,
+    Goodnight,
+    GratitudeCard,
+    PositiveEnergy,
+    PositiveSlogan,
+    PositivePurposes,
+    PlanOnGoodDay,
+    WordOfDay
+)
+
+class Questions:
+    def handle(self, number: str, inputs: list):
+        if number == "1":
+            return PlanOnGoodDay().generate(inputs[0])
+        elif number == "2":
+            return Afirmations().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "3":
+            return Humor().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "4":
+            return EmotionalKit().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "5":
+            return GoodNews().generate(inputs[0])
+        elif number == "6":
+            return Goodnight().generate(inputs[0])
+        elif number == "7":
+            return GratitudeCard().generate(inputs[0])
+        elif number == "8":
+            return PositiveEnergy().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "9":
+            return PositiveSlogan().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "10":
+            return Retrospection().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "11":
+            return PositivePurposes().generate(inputs[0], inputs[1], inputs[2])
+        elif number == "12":
+            return WordOfDay().generate(inputs[0])
+        else:
+            return "Nie rozpoznano numeru. Wpisz wartość od 1 do 12."
